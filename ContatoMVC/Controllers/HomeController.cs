@@ -1,8 +1,8 @@
-﻿using ContatosMVC.Models;
+﻿using ContatoMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace ContatosMVC.Controllers
+namespace ContatoMVC.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,0 +1,60 @@
+﻿@using ContatoMVC.Models.Enums;
+@model UsuarioModel
+
+@{
+    ViewData["Title"] = "Criar Usuário";
+}
+
+<div class="text-center">
+    <h1 class="display-5">Cadastro de Usuários</h1>
+</div>
+
+<div class="border border-2 p-3 m-3">
+    <form asp-controller="Usuario" asp-action="Criar" , method="post">
+        <div class="row mb-4">
+            <label for="INome" class="col-sm-2 col-form-label">Nome</label>
+            <div class="col-sm-10">
+                <input type="text" required asp-for="Nome" class="form-control" placeholder="Digite o seu nome" id="INome">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <label for="IEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" required asp-for="Email" class="form-control" placeholder="Digite o seu e-mail" id="IEmail">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <label for="ILogin" class="col-sm-2 col-form-label">Login</label>
+            <div class="col-sm-10">
+                <input type="text" required asp-for="Login" class="form-control" placeholder="Digite o seu login" id="ILogin">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <label for="ISenha" class="col-sm-2 col-form-label">Senha</label>
+            <div class="col-sm-10">
+                <input type="password" required asp-for="Senha" class="form-control" placeholder="Digite o sua senha" id="ISenha">
+            </div>
+        </div>
+        <fieldset class="row mb-3">
+            <legend class="col-form-label col-sm-2 pt-0">Perfil</legend>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="Perfil" type="radio" id="IPerfil1" value="@PerfilEnum.Padrao" checked>
+                    <label class="form-check-label">
+                        Padrão
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="Perfil" id="IPerfil2" value="@PerfilEnum.Admin">
+                    <label class="form-check-label">
+                        Administrador
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <a class="btn btn-secondary btn-block" asp-controller="Usuario" asp-action="Index">Voltar</a>
+        </div>
+    </form>
+</div>

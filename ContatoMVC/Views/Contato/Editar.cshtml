@@ -1,32 +1,35 @@
-﻿@{
+﻿@model ContatoModel;
+@{
     ViewData["Title"] = "Editar Contato";
 }
 
 <div class="text-center">
     <h1 class="display-5">Editar Contato</h1>
 </div>
+
 <div class="border border-2 p-3 m-3">
-    <form>
+    <form asp-controller="Contato" asp-action="Editar" method="post">
+        <input type="hidden" asp-for="Id"/>
         <div class="row mb-4">
             <label for="INome" class="col-sm-2 col-form-label">Nome</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="Digite o seu nome" id="INome">
+                <input type="text" required asp-for="Nome" class="form-control" placeholder="Digite o seu nome" id="INome">
             </div>
         </div>
         <div class="row mb-4">
             <label for="IEmail" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" placeholder="Digite o seu e-mail" id="IEmail">
+                <input type="email" required asp-for="Email" class="form-control" placeholder="Digite o seu e-mail" id="IEmail">
             </div>
         </div>
         <div class="row mb-4">
             <label for="ITelefone" class="col-sm-2 col-form-label">Telefone</label>
             <div class="col-sm-10">
-                <input type="tel" class="form-control" placeholder="Digite o seu telefone" id="ITelefone">
+                <input type="tel" required asp-for="Telefone" class="form-control" placeholder="Digite o seu telefone" id="ITelefone">
             </div>
         </div>
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary">Alterar</button>
+            <button type="submit" class="btn btn-primary">Editar</button>
             <a class="btn btn-secondary btn-block" asp-controller="Contato" asp-action="Index">Voltar</a>
         </div>
     </form>

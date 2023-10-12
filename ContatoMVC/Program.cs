@@ -1,9 +1,9 @@
 using ContatoMVC.Repository;
 using ContatoMVC.Repository.Interface;
-using ContatosMVC.Data;
+using ContatoMVC.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace ContatosMVC
+namespace ContatoMVC
 {
     public class Program
     {
@@ -15,6 +15,7 @@ namespace ContatosMVC
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
+            builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
             builder.Services.AddDbContext<ContatoContext>(
                 option => option.UseSqlServer(builder.Configuration.GetConnectionString("Database"),
@@ -40,7 +41,7 @@ namespace ContatosMVC
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Login}/{action=Index}/{id?}");
 
             app.Run();
         }

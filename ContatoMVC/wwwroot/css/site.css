@@ -16,3 +16,7 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.table_align_left {
+    text-align: left;
+}

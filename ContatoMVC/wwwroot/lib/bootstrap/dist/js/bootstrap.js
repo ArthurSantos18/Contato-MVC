@@ -5024,3 +5024,8 @@
 
 })));
 //# sourceMappingURL=bootstrap.js.map
+
+
+$('.close-alert').click(function () {
+    $('.alert').hide('hide');
+});

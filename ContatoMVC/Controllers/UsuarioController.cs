@@ -1,22 +1,23 @@
-﻿using ContatoMVC.Repository.Interface;
-using ContatoMVC.Models;
+﻿using ContatoMVC.Models;
+using ContatoMVC.Repository;
+using ContatoMVC.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContatoMVC.Controllers
 {
-    public class ContatoController : Controller
+    public class UsuarioController : Controller
     {
-        private readonly IContatoRepository _contatoRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
 
-        public ContatoController(IContatoRepository contatoRepository)
+        public UsuarioController(IUsuarioRepository usuarioRepository)
         {
-            _contatoRepository = contatoRepository;
+            _usuarioRepository = usuarioRepository;
         }
 
         public async Task<IActionResult> Index()
         {
-            List<ContatoModel> contatos = await _contatoRepository.BuscarTodosAsync();
-            return View(contatos);
+            List<UsuarioModel> usuarios = await _usuarioRepository.BuscarTodosAsync();
+            return View(usuarios);
         }
 
         public IActionResult Criar()
@@ -25,12 +26,12 @@ namespace ContatoMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Criar(ContatoModel contato)
+        public async Task<IActionResult> Criar(UsuarioModel usuario)
         {
             try
             {
-                await _contatoRepository.AdicionarAsync(contato);
-                TempData["MensagemSucesso"] = "Contato cadastrado com sucesso";
+                await _usuarioRepository.AdicionarAsync(usuario);
+                TempData["MensagemSucesso"] = "Usuario cadastrado com sucesso";
                 return RedirectToAction("Index");
             }
             catch (Exception e)
@@ -42,17 +43,17 @@ namespace ContatoMVC.Controllers
 
         public async Task<IActionResult> Editar(int id)
         {
-            ContatoModel contato = await _contatoRepository.BuscarPorIdAsync(id);
-            return View(contato);
+            UsuarioModel usuario = await _usuarioRepository.BuscarPorIdAsync(id);
+            return View(usuario);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Editar(ContatoModel contato)
+        public async Task<IActionResult> Editar(UsuarioModel usuario)
         {
             try
             {
-                await _contatoRepository.EditarAsync(contato);
-                TempData["MensagemSucesso"] = "Contato alterado com sucesso";
+                await _usuarioRepository.EditarAsync(usuario);
+                TempData["MensagemSucesso"] = "Usuário alterado com sucesso";
                 return RedirectToAction("Index");
 
             }
@@ -65,16 +66,16 @@ namespace ContatoMVC.Controllers
 
         public async Task<IActionResult> DeletarTela(int id)
         {
-            ContatoModel contato = await _contatoRepository.BuscarPorIdAsync(id);
-            return View(contato);
+            UsuarioModel usuario = await _usuarioRepository.BuscarPorIdAsync(id);
+            return View(usuario);
         }
 
         public async Task<IActionResult> Deletar(int id)
         {
             try
             {
-                await _contatoRepository.DeletarAsync(id);
-                TempData["MensagemSucesso"] = "Contato deletado com sucesso";
+                await _usuarioRepository.DeletarAsync(id);
+                TempData["MensagemSucesso"] = "Usuário deletado com sucesso";
                 return RedirectToAction("Index");
             }
             catch (Exception e)

@@ -1,4 +1,4 @@
-﻿namespace ContatosMVC.Models
+﻿namespace ContatoMVC.Models
 {
     public class ContatoModel
     {

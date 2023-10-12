@@ -1,11 +1,12 @@
-﻿using ContatosMVC.Models;
+﻿using ContatoMVC.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ContatosMVC.Data
+namespace ContatoMVC.Data
 {
     public class ContatoContext : DbContext
     {
-        public DbSet<ContatoModel> Contato {  get; set; }
+        public DbSet<ContatoModel> Contatos {  get; set; }
+        public DbSet<UsuarioModel> Usuarios { get; set; }
 
         public ContatoContext(DbContextOptions option) : base(option)
         {
