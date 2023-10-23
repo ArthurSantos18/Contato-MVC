@@ -4,11 +4,14 @@ namespace ContatoMVC.Repository.Interface
 {
     public interface IUsuarioRepository
     {
-        Task<UsuarioModel> BuscarPorLogin(string login);
+        Task<UsuarioModel> BuscarAsync(string login);
+        Task<UsuarioModel> BuscarAsync(string login, string email);
+        Task<UsuarioModel> BuscarAsync(int id);
         Task<UsuarioModel> AdicionarAsync(UsuarioModel usuario);
         Task<List<UsuarioModel>> BuscarTodosAsync();
-        Task<UsuarioModel> BuscarPorIdAsync(int id);
         Task<UsuarioModel> EditarAsync(UsuarioModel usuario);
+        Task<UsuarioModel> EditarAsync(EditarSenhaModel editarSenha);
+
         Task<bool> DeletarAsync(int id);
     }
 }

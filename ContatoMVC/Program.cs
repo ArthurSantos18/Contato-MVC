@@ -2,6 +2,8 @@ using ContatoMVC.Repository;
 using ContatoMVC.Repository.Interface;
 using ContatoMVC.Data;
 using Microsoft.EntityFrameworkCore;
+using ContatoMVC.Services.Interfaces;
+using ContatoMVC.Services;
 
 namespace ContatoMVC
 {
@@ -14,8 +16,18 @@ namespace ContatoMVC
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            builder.Services.AddSession(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+                
+            });
+
             builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
             builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            builder.Services.AddScoped<ISessaoService, SessaoService>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
 
             builder.Services.AddDbContext<ContatoContext>(
                 option => option.UseSqlServer(builder.Configuration.GetConnectionString("Database"),
@@ -38,6 +50,8 @@ namespace ContatoMVC
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",

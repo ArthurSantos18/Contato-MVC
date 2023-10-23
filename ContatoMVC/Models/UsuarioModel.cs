@@ -1,4 +1,5 @@
 ﻿using ContatoMVC.Models.Enums;
+using ContatoMVC.Services;
 
 namespace ContatoMVC.Models
 {
@@ -15,7 +16,17 @@ namespace ContatoMVC.Models
 
         public bool ValidacaoSenha(string senha)
         {
-            return Senha == senha;
+            return Senha == senha.GerarHash();
+        }
+
+        public void NovaSenha(string novaSenha)
+        {
+            Senha = novaSenha.GerarHash();
+        }
+
+        public void SenhaHash()
+        {
+            Senha = Senha.GerarHash();
         }
     }
 }

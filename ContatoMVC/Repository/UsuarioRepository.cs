@@ -17,6 +17,7 @@ namespace ContatoMVC.Repository
         public async Task<UsuarioModel> AdicionarAsync(UsuarioModel usuario)
         {
             usuario.DataCadastro = DateTime.Now;
+            usuario.SenhaHash();
             await _context.Usuarios.AddAsync(usuario);
             await _context.SaveChangesAsync();
 
@@ -25,7 +26,7 @@ namespace ContatoMVC.Repository
 
         public async Task<UsuarioModel> EditarAsync(UsuarioModel usuario)
         {
-            UsuarioModel usuarioDatabase = await BuscarPorIdAsync(usuario.Id);
+            UsuarioModel usuarioDatabase = await BuscarAsync(usuario.Id);
             
             if (usuarioDatabase == null)
             {
@@ -43,19 +44,37 @@ namespace ContatoMVC.Repository
             return usuarioDatabase;         
         }
 
-        public async Task<UsuarioModel> BuscarPorIdAsync(int id)
+        public async Task<UsuarioModel> EditarAsync(EditarSenhaModel editarSenha)
         {
-            return await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
-        }
+            UsuarioModel usuario = await BuscarAsync(editarSenha.Id);
 
-        public async Task<List<UsuarioModel>> BuscarTodosAsync()
-        {
-            return await _context.Usuarios.ToListAsync();
+            if (usuario == null)
+            {
+                throw new Exception("Houve um erro na atualização da senha, usuário não encontrado");
+            }
+
+            if (!usuario.ValidacaoSenha(editarSenha.SenhaAtual))
+            {
+                throw new Exception("Senha atual não confere");
+            }
+
+            if (usuario.ValidacaoSenha(editarSenha.NovaSenha))
+            {
+                throw new Exception("A nova senha é igual a senha atual");
+            }
+
+            usuario.NovaSenha(editarSenha.NovaSenha);
+            usuario.DataAtualizacao = DateTime.Now;
+
+            _context.Usuarios.Update(usuario);
+            await _context.SaveChangesAsync();
+            
+            return usuario;
         }
 
         public async Task<bool> DeletarAsync(int id)
         {
-            UsuarioModel usuarioDatabase = await BuscarPorIdAsync(id);
+            UsuarioModel usuarioDatabase = await BuscarAsync(id);
 
             if (usuarioDatabase == null)
             {
@@ -68,9 +87,24 @@ namespace ContatoMVC.Repository
             return true;
         }
 
-        public Task<UsuarioModel> BuscarPorLogin(string login)
+        public async Task<UsuarioModel> BuscarAsync(int id)
         {
-            return _context.Usuarios.FirstOrDefaultAsync(x => x.Login == login);
+            return await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<UsuarioModel> BuscarAsync(string login)
+        {
+            return await _context.Usuarios.FirstOrDefaultAsync(x => x.Login == login);
+        }
+
+        public async Task<UsuarioModel> BuscarAsync(string login, string email)
+        {
+            return await _context.Usuarios.FirstOrDefaultAsync(x => x.Login == login && x.Email == email);
+        }
+
+        public async Task<List<UsuarioModel>> BuscarTodosAsync()
+        {
+            return await _context.Usuarios.ToListAsync();
         }
     }
 }

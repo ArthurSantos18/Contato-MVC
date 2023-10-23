@@ -1,10 +1,13 @@
-﻿using ContatoMVC.Models;
+﻿using ContatoMVC.Filters;
+using ContatoMVC.Models;
 using ContatoMVC.Repository;
 using ContatoMVC.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContatoMVC.Controllers
 {
+    [PaginaUsuarioLogado]
+    [PaginaUsuarioAdm]
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepository _usuarioRepository;
@@ -43,7 +46,7 @@ namespace ContatoMVC.Controllers
 
         public async Task<IActionResult> Editar(int id)
         {
-            UsuarioModel usuario = await _usuarioRepository.BuscarPorIdAsync(id);
+            UsuarioModel usuario = await _usuarioRepository.BuscarAsync(id);
             return View(usuario);
         }
 
@@ -66,7 +69,7 @@ namespace ContatoMVC.Controllers
 
         public async Task<IActionResult> DeletarTela(int id)
         {
-            UsuarioModel usuario = await _usuarioRepository.BuscarPorIdAsync(id);
+            UsuarioModel usuario = await _usuarioRepository.BuscarAsync(id);
             return View(usuario);
         }
 

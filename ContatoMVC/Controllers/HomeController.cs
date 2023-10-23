@@ -1,9 +1,11 @@
-﻿using ContatoMVC.Models;
+﻿using ContatoMVC.Filters;
+using ContatoMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace ContatoMVC.Controllers
 {
+    [PaginaUsuarioLogado]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
