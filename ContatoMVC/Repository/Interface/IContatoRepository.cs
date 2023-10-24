@@ -5,7 +5,7 @@ namespace ContatoMVC.Repository.Interface
     public interface IContatoRepository
     {
         Task<ContatoModel> AdicionarAsync(ContatoModel contato);
-        Task<List<ContatoModel>> BuscarTodosAsync();
+        Task<List<ContatoModel>> BuscarTodosAsync(int id);
         Task<ContatoModel> BuscarPorIdAsync(int id);
         Task<ContatoModel> EditarAsync(ContatoModel contato);
         Task<bool> DeletarAsync(int id);

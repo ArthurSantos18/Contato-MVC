@@ -22,9 +22,9 @@ namespace ContatoMVC.Repository
             return contato;
         }
 
-        public async Task<List<ContatoModel>> BuscarTodosAsync()
+        public async Task<List<ContatoModel>> BuscarTodosAsync(int id)
         {
-            return await _context.Contatos.ToListAsync();
+            return await _context.Contatos.Where(x => x.UsuarioId == id).ToListAsync();
         }
 
         public async Task<ContatoModel> BuscarPorIdAsync(int id)

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContatoMVC.Migrations
 {
     [DbContext(typeof(ContatoContext))]
-    partial class ContatosContextModelSnapshot : ModelSnapshot
+    partial class ContatoContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -47,6 +47,7 @@ namespace ContatoMVC.Migrations
                         .HasColumnName("telefone");
 
                     b.Property<int?>("UsuarioId")
+                        .IsRequired()
                         .HasColumnType("int")
                         .HasColumnName("usuario_id");
 
@@ -55,6 +56,32 @@ namespace ContatoMVC.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("contatos", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "rudolf@gmail.com",
+                            Nome = "Rudolf",
+                            Telefone = "00 0000-0000",
+                            UsuarioId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "kyrie@gmail.com",
+                            Nome = "Kyrie",
+                            Telefone = "00 0000-0110",
+                            UsuarioId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "maria@gmail.com",
+                            Nome = "Maria",
+                            Telefone = "00 1010-1110",
+                            UsuarioId = 3
+                        });
                 });
 
             modelBuilder.Entity("ContatoMVC.Models.UsuarioModel", b =>
@@ -101,6 +128,38 @@ namespace ContatoMVC.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("usuarios", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DataCadastro = new DateTime(2023, 10, 23, 12, 45, 11, 766, DateTimeKind.Local).AddTicks(4849),
+                            Email = "nieeg18@gmail.com",
+                            Login = "adm",
+                            Nome = "Administrador",
+                            Perfil = 0,
+                            Senha = "40bd001563085fc35165329ea1ff5c5ecbdbbeef"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DataCadastro = new DateTime(2023, 10, 23, 12, 45, 11, 766, DateTimeKind.Local).AddTicks(4881),
+                            Email = "battler@gmail.com",
+                            Login = "BATTLER",
+                            Nome = "Battler",
+                            Perfil = 1,
+                            Senha = "40bd001563085fc35165329ea1ff5c5ecbdbbeef"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DataCadastro = new DateTime(2023, 10, 23, 12, 45, 11, 766, DateTimeKind.Local).AddTicks(4905),
+                            Email = "beatrice@gmail.com",
+                            Login = "BEATRICE",
+                            Nome = "Beatrice",
+                            Perfil = 1,
+                            Senha = "40bd001563085fc35165329ea1ff5c5ecbdbbeef"
+                        });
                 });
 
             modelBuilder.Entity("ContatoMVC.Models.ContatoModel", b =>
@@ -108,7 +167,8 @@ namespace ContatoMVC.Migrations
                     b.HasOne("ContatoMVC.Models.UsuarioModel", "Usuario")
                         .WithMany("Contatos")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Usuario");
                 });

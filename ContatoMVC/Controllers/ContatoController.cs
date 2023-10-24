@@ -2,6 +2,7 @@
 using ContatoMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using ContatoMVC.Filters;
+using ContatoMVC.Services.Interfaces;
 
 namespace ContatoMVC.Controllers
 {
@@ -9,15 +10,18 @@ namespace ContatoMVC.Controllers
     public class ContatoController : Controller
     {
         private readonly IContatoRepository _contatoRepository;
-
-        public ContatoController(IContatoRepository contatoRepository)
+        private readonly ISessaoService _sessaoService;
+        public ContatoController(IContatoRepository contatoRepository, ISessaoService sessaoService)
         {
             _contatoRepository = contatoRepository;
+            _sessaoService = sessaoService;
         }
 
         public async Task<IActionResult> Index()
         {
-            List<ContatoModel> contatos = await _contatoRepository.BuscarTodosAsync();
+            UsuarioModel usuario = _sessaoService.BuscarSessao();
+            List<ContatoModel> contatos = await _contatoRepository.BuscarTodosAsync(usuario.Id);
+
             return View(contatos);
         }
 
@@ -31,7 +35,11 @@ namespace ContatoMVC.Controllers
         {
             try
             {
+                UsuarioModel usuario = _sessaoService.BuscarSessao();
+                contato.UsuarioId = usuario.Id;
+
                 await _contatoRepository.AdicionarAsync(contato);
+
                 TempData["MensagemSucesso"] = "Contato cadastrado com sucesso";
                 return RedirectToAction("Index");
             }
@@ -53,7 +61,11 @@ namespace ContatoMVC.Controllers
         {
             try
             {
+                UsuarioModel usuario = _sessaoService.BuscarSessao();
+                contato.UsuarioId = usuario.Id;
+
                 await _contatoRepository.EditarAsync(contato);
+
                 TempData["MensagemSucesso"] = "Contato alterado com sucesso";
                 return RedirectToAction("Index");
 

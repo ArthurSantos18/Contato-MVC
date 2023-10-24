@@ -17,6 +17,8 @@ namespace ContatoMVC.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+
+            modelBuilder.Seed();
         }
     }
 }

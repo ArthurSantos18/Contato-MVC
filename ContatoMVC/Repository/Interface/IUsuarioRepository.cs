@@ -7,11 +7,10 @@ namespace ContatoMVC.Repository.Interface
         Task<UsuarioModel> BuscarAsync(string login);
         Task<UsuarioModel> BuscarAsync(string login, string email);
         Task<UsuarioModel> BuscarAsync(int id);
-        Task<UsuarioModel> AdicionarAsync(UsuarioModel usuario);
         Task<List<UsuarioModel>> BuscarTodosAsync();
+        Task<UsuarioModel> AdicionarAsync(UsuarioModel usuario);
         Task<UsuarioModel> EditarAsync(UsuarioModel usuario);
         Task<UsuarioModel> EditarAsync(EditarSenhaModel editarSenha);
-
         Task<bool> DeletarAsync(int id);
     }
 }

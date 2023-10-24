@@ -13,6 +13,7 @@ namespace ContatoMVC.Models
         public string Senha { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime? DataAtualizacao { get; set; }
+        public List<ContatoModel> Contatos { get; set; } = new List<ContatoModel>();
 
         public bool ValidacaoSenha(string senha)
         {

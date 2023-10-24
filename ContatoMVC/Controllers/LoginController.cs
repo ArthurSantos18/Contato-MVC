@@ -40,6 +40,7 @@ namespace ContatoMVC.Controllers
                     if (usuario.ValidacaoSenha(loginModel.Senha))
                     {
                         _sessaoService.CriarSessao(usuario);
+
                         return RedirectToAction("Index", "Home");
                     }
                     TempData["MensagemErro"] = $"Senha inválida";

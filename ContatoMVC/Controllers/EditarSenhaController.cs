@@ -32,6 +32,7 @@ namespace ContatoMVC.Controllers
                 if (editarSenha.NovaSenha == editarSenha.ConfirmarNovaSenha)
                 {
                     await _usuarioRepository.EditarAsync(editarSenha);
+
                     TempData["MensagemSucesso"] = "Senha alterada com sucesso";
                     return View("Index", editarSenha);
                 }

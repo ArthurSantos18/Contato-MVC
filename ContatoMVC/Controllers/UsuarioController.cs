@@ -20,6 +20,7 @@ namespace ContatoMVC.Controllers
         public async Task<IActionResult> Index()
         {
             List<UsuarioModel> usuarios = await _usuarioRepository.BuscarTodosAsync();
+
             return View(usuarios);
         }
 
@@ -34,6 +35,7 @@ namespace ContatoMVC.Controllers
             try
             {
                 await _usuarioRepository.AdicionarAsync(usuario);
+
                 TempData["MensagemSucesso"] = "Usuario cadastrado com sucesso";
                 return RedirectToAction("Index");
             }
@@ -47,6 +49,7 @@ namespace ContatoMVC.Controllers
         public async Task<IActionResult> Editar(int id)
         {
             UsuarioModel usuario = await _usuarioRepository.BuscarAsync(id);
+
             return View(usuario);
         }
 
@@ -56,6 +59,7 @@ namespace ContatoMVC.Controllers
             try
             {
                 await _usuarioRepository.EditarAsync(usuario);
+
                 TempData["MensagemSucesso"] = "Usuário alterado com sucesso";
                 return RedirectToAction("Index");
 
