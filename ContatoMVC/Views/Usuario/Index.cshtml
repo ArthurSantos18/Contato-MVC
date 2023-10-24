@@ -35,8 +35,9 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Login</th>
                 <th scope="col">E-mail</th>
-                <th scope="col">Data de Cadastro</th>
                 <th scope="col">Perfil</th>
+                <th scope="col">Total de Contatos</th>
+                <th scope="col">Data de Cadastro</th>
                 <th scope="col"></th>
 
             </tr>
@@ -51,8 +52,13 @@
                         <td class="table_align_left">@item.Nome</td>
                         <td class="table_align_left">@item.Login</td>
                         <td class="table_align_left">@item.Email</td>
-                        <td class="table_align_left">@item.DataCadastro</td>
                         <td class="table_align_left">@item.Perfil</td>
+                        <td>
+                            <a href="javascript:" usuario-id="@item.Id" class="btn btn-success btn-sm btn-total-contatos">
+                                @(item.Contatos != null && item.Contatos.Any() ? item.Contatos.Count() : 0)
+                            </a>
+                        </td>
+                        <td class="table_align_left">@item.DataCadastro</td>
                         <td>
                             <div class="btn-group" role="group">
                                 <a role="button" class="btn btn-primary" asp-route-id="@item.Id" asp-controller="Usuario" asp-action="Editar">Editar</a>
@@ -64,4 +70,21 @@
             }
         </tbody>
     </table>
-</div>
+
+    <div class="modal fade" id="Imodal-contatos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="Imodal-lable">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="Ilista-contatos">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>

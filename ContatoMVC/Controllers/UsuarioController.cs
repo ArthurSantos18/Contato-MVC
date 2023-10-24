@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ContatoMVC.Controllers
 {
-    [PaginaUsuarioLogado]
     [PaginaUsuarioAdm]
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepository _usuarioRepository;
-
-        public UsuarioController(IUsuarioRepository usuarioRepository)
+        private readonly IContatoRepository _contatoRepository;
+        public UsuarioController(IUsuarioRepository usuarioRepository, IContatoRepository contatoRepository)
         {
             _usuarioRepository = usuarioRepository;
+            _contatoRepository = contatoRepository;
         }
 
         public async Task<IActionResult> Index()
@@ -90,6 +90,12 @@ namespace ContatoMVC.Controllers
                 TempData["MensagemErro"] = $"Erro ao deletar:\n{e.Message}";
                 return RedirectToAction("Index");
             }
+        }
+        public async Task<IActionResult> ListarContatos(int id)
+        {
+            List<ContatoModel> contatos = await _contatoRepository.BuscarTodosAsync(id);
+
+            return PartialView("_ContatosUsuario", contatos);
         }
     }
 }

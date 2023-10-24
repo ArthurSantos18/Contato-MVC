@@ -104,7 +104,7 @@ namespace ContatoMVC.Repository
 
         public async Task<List<UsuarioModel>> BuscarTodosAsync()
         {
-            return await _context.Usuarios.ToListAsync();
+            return await _context.Usuarios.Include(x => x.Contatos).ToListAsync();
         }
     }
 }

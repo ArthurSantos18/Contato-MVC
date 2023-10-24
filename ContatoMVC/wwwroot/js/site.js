@@ -3,6 +3,24 @@
 
 // Write your JavaScript code.
 
+$(document).ready(function () {
+    getDataTable("#contatoTable");
+    getDataTable("#usuarioTable");
+
+    $(".btn-total-contatos").click(function () {
+        var usuarioId = $(this).attr("usuario-id");
+
+        $.ajax({
+            type: "GET",
+            url: "/Usuario/ListarContatos/" + usuarioId,
+            success: function (result) {
+                $("#Ilista-contatos").html(result);
+                $("#Imodal-contatos").modal('show');
+            }
+        });
+    });
+})
+
 function getDataTable(id) {
     $(id).DataTable({
         "ordering": true,
@@ -34,11 +52,6 @@ function getDataTable(id) {
         }
     });
 }
-
-$(document).ready(function () {
-    getDataTable("#contatoTable")
-    getDataTable("#usuarioTable")
-});
 
 $('.btn-close').click(function () {
     $('.alert').hide('hide');
