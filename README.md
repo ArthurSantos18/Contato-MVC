@@ -30,7 +30,7 @@
 <p>Esse projeto foi desenvolvido no Visual Studio 2022. Para a execução desse projeto é necessário:</p>
 <ol>
   <li>Instalação do Entity Framework e suas extensões com SQL Server</li>
-  <li>Configuração da String de conexão com o banco de dados SQLServer</li>
+  <li>Configuração da string de conexão com o banco de dados SQL Server</li>
 </ol>
 </br>
 <p>Linkedin: "www.linkedin.com/in/arthurazevedo18"</p>
