@@ -133,7 +133,7 @@ namespace ContatoMVC.Migrations
                         new
                         {
                             Id = 1,
-                            DataCadastro = new DateTime(2023, 10, 23, 12, 45, 11, 766, DateTimeKind.Local).AddTicks(4849),
+                            DataCadastro = new DateTime(2024, 1, 8, 11, 32, 13, 878, DateTimeKind.Local).AddTicks(7542),
                             Email = "nieeg18@gmail.com",
                             Login = "adm",
                             Nome = "Administrador",
@@ -143,7 +143,7 @@ namespace ContatoMVC.Migrations
                         new
                         {
                             Id = 2,
-                            DataCadastro = new DateTime(2023, 10, 23, 12, 45, 11, 766, DateTimeKind.Local).AddTicks(4881),
+                            DataCadastro = new DateTime(2024, 1, 8, 11, 32, 13, 878, DateTimeKind.Local).AddTicks(7571),
                             Email = "battler@gmail.com",
                             Login = "BATTLER",
                             Nome = "Battler",
@@ -153,7 +153,7 @@ namespace ContatoMVC.Migrations
                         new
                         {
                             Id = 3,
-                            DataCadastro = new DateTime(2023, 10, 23, 12, 45, 11, 766, DateTimeKind.Local).AddTicks(4905),
+                            DataCadastro = new DateTime(2024, 1, 8, 11, 32, 13, 878, DateTimeKind.Local).AddTicks(7607),
                             Email = "beatrice@gmail.com",
                             Login = "BEATRICE",
                             Nome = "Beatrice",

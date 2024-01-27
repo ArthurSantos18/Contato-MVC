@@ -29,5 +29,13 @@ namespace ContatoMVC.Models
         {
             Senha = Senha.GerarHash();
         }
+
+        public string GerarSenhaAleatoria()
+        {
+            string novaSenha = Guid.NewGuid().ToString().Substring(0, 8);
+            Senha = novaSenha.GerarHash();
+            
+            return novaSenha;
+        }
     }
 }

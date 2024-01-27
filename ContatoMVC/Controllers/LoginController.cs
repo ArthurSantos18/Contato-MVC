@@ -77,12 +77,14 @@ namespace ContatoMVC.Controllers
 
                 if (usuario != null)
                 {
+                    string novaSenha = usuario.GerarSenhaAleatoria();
                     string assunto = "Contato MVC - Nova Senha";
-                    string mensagem = $"Sua nova senha é: {usuario.Senha}";
+                    string mensagem = $"Sua nova senha é: {novaSenha}";
                     bool mail = await _emailService.EnviarAsync(usuario.Email, assunto, mensagem);
                     
                     if (mail)
                     {
+                        await _usuarioRepository.EditarAsync(usuario);
                         TempData["MensagemSucesso"] = $"Enviamos para o seu e-mail cadastrado.";
                     }
                     else

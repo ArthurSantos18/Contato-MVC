@@ -59,9 +59,9 @@ namespace ContatoMVC.Migrations
                 columns: new[] { "id", "data_atualizacao", "data_cadastro", "email", "login", "nome", "perfil", "senha" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2023, 10, 23, 12, 45, 11, 766, DateTimeKind.Local).AddTicks(4849), "nieeg18@gmail.com", "adm", "Administrador", 0, "40bd001563085fc35165329ea1ff5c5ecbdbbeef" },
-                    { 2, null, new DateTime(2023, 10, 23, 12, 45, 11, 766, DateTimeKind.Local).AddTicks(4881), "battler@gmail.com", "BATTLER", "Battler", 1, "40bd001563085fc35165329ea1ff5c5ecbdbbeef" },
-                    { 3, null, new DateTime(2023, 10, 23, 12, 45, 11, 766, DateTimeKind.Local).AddTicks(4905), "beatrice@gmail.com", "BEATRICE", "Beatrice", 1, "40bd001563085fc35165329ea1ff5c5ecbdbbeef" }
+                    { 1, null, new DateTime(2024, 1, 8, 11, 32, 13, 878, DateTimeKind.Local).AddTicks(7542), "nieeg18@gmail.com", "adm", "Administrador", 0, "40bd001563085fc35165329ea1ff5c5ecbdbbeef" },
+                    { 2, null, new DateTime(2024, 1, 8, 11, 32, 13, 878, DateTimeKind.Local).AddTicks(7571), "battler@gmail.com", "BATTLER", "Battler", 1, "40bd001563085fc35165329ea1ff5c5ecbdbbeef" },
+                    { 3, null, new DateTime(2024, 1, 8, 11, 32, 13, 878, DateTimeKind.Local).AddTicks(7607), "beatrice@gmail.com", "BEATRICE", "Beatrice", 1, "40bd001563085fc35165329ea1ff5c5ecbdbbeef" }
                 });
 
             migrationBuilder.InsertData(
