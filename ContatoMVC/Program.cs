@@ -24,8 +24,8 @@ namespace ContatoMVC
                 
             });
 
-            builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
-            builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            builder.Services.AddTransient<IContatoRepository, ContatoRepository>();
+            builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             builder.Services.AddScoped<ISessaoService, SessaoService>();
             builder.Services.AddScoped<IEmailService, EmailService>();
 
